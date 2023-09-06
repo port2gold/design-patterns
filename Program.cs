@@ -1,20 +1,40 @@
-﻿
-using design_patterns.Template;
+﻿//Command design pattern
 
-//Template design pattern 
-//Mixture of concrete and abstract class
-// The concrete class stands as the template while the abstract class can be overidden.
+using design_patterns.Command;
+using design_patterns.Command.fx;
+using System.Drawing;
 
-var transfer = new TransferMoneyTask();
-transfer.Execute();
+var service = new CustomerService();
+var command = new AddCustomerCommand(service);
+var button = new Button(command);
 
-//Result from console
-//Audit
-//Transfer money
+button.Click();
 
-var generateReport = new GenerateReportTask();
-generateReport.Execute();
+// Console Returns 
+// Add Customer
 
-//Result from console
-//Audit
-//Generate Report
+
+
+
+
+//Record Actions with command pattern 
+var composite = new CompositeCommand();
+composite.AddCommand(new ResizeCommand());
+composite.AddCommand(new BlackAndWhiteCommand());
+composite.Execute();
+
+//Console Result
+//Resize
+//Black and White
+
+//These can also be re executed multiple times
+composite.Execute(); 
+composite.Execute(); 
+composite.Execute();
+
+//Console Result
+//Black and White
+//Resize
+//Black and White
+//Resize
+//Black and White
