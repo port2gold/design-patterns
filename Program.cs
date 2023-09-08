@@ -4,10 +4,10 @@ using design_patterns.Observer;
 //The push style of communication
 //The pull style of communcation
 var dataSource = new DataSource();
-var sheet1 = new SpreadSheet();
-var sheet2 = new SpreadSheet();
-var chart1 = new Chart();
-var chart2 = new Chart();
+var sheet1 = new SpreadSheet(dataSource);
+var sheet2 = new SpreadSheet(dataSource);
+var chart1 = new Chart(dataSource);
+var chart2 = new Chart(dataSource);
 
 dataSource.AddObserver(sheet1);
 dataSource.AddObserver(sheet2);

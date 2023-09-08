@@ -18,11 +18,11 @@ namespace design_patterns.Observer
         {
             observers.Remove(observer);
         }
-        public void NotifyObservers(int value)
+        public void NotifyObservers()
         {
             foreach (var observer in observers)
             {
-                observer.Update(value);
+                observer.Update();
             }
         }
     }

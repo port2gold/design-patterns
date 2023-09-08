@@ -2,9 +2,15 @@
 {
     internal class Chart : Observer
     {
-        public void Update(int value)
+        private  DataSource dataSource;
+
+        public Chart(DataSource dataSource)
         {
-            Console.WriteLine($"Chart was updated with value of {value}");
+            this.dataSource = dataSource;
+        }
+        public void Update()
+        {
+            Console.WriteLine($"Chart was updated with value of {dataSource.GetValue()}");
         }
     }
 }

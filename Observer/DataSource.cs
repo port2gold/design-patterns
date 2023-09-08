@@ -11,7 +11,7 @@
         public void SetValue(int value)
         {
             this.value = value;
-            NotifyObservers(value);
+            NotifyObservers();
         }
     }
 }
