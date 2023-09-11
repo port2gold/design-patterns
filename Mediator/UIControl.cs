@@ -1,18 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace design_patterns.Mediator
+﻿namespace design_patterns.Mediator
 {
-    public class UIControl
+    public abstract class UIControl : EventHandler
     {
-        protected DialogBox owner;
+        private List<EventHandler> eventHandlers = new List<EventHandler>();
 
-        public UIControl(DialogBox owner)
+        public void AddEventHandler(EventHandler observer)
         {
-            this.owner = owner;
+            eventHandlers.Add(observer);
         }
+        protected void NotifyEventHandlers()
+        {
+            foreach (EventHandler @event in eventHandlers)
+            {
+                @event.Handle();
+            }
+        }
+        public void Handle()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

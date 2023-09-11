@@ -1,44 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace design_patterns.Mediator
+﻿namespace design_patterns.Mediator
 {
-    public class ArticlesDialogBox : DialogBox
+    public class ArticlesDialogBox 
     {
-        private ListBox articlesListBox;
-        private TextBox titleTextBox;
-        private Button saveButton;
+        private ListBox articlesListBox = new ListBox();
+        private TextBox titleTextBox = new TextBox();
+        private Button saveButton = new Button();
 
-        public ArticlesDialogBox() : base()
+        public ArticlesDialogBox()
         {
-            articlesListBox = new ListBox(this);
-            titleTextBox = new TextBox(this);
-            saveButton = new Button(this);
+            articlesListBox.ArticleSelectedEvent += ArticleSelected;
+            titleTextBox.TitleChangedEvent += TitleChanged;
         }
 
         public void SimulateUserInteraction()
         {
+
             articlesListBox.SetSelection("Article 1");
             titleTextBox.SetContent("");
-            titleTextBox.SetContent("Article 2");
+            //titleTextBox.SetContent("Article 2");
             Console.WriteLine($"TextBox: {titleTextBox.GetContent()}");
             Console.WriteLine($"Button: {saveButton.IsEnabled()}");
         }
 
-        public override void Changed(UIControl control)
-        {
-            if(control ==  articlesListBox)
-            {
-                ArticleSelected();
-            }
-            else if(control == titleTextBox)
-            {
-                TitleChanged();
-            }
-        }
+        //public override void Changed(UIControl control)
+        //{
+        //    if(control ==  articlesListBox)
+        //    {
+        //        ArticleSelected();
+        //    }
+        //    else if(control == titleTextBox)
+        //    {
+        //        TitleChanged();
+        //    }
+        //}
 
         private void TitleChanged()
         {
