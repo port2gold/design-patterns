@@ -1,28 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace design_patterns.Mediator
+﻿namespace design_patterns.Mediator
 {
     internal class TextBox : UIControl
     {
         private string content;
 
-        public TextBox(DialogBox owner) : base(owner)
-        {
-        }
+        //public TextBox(DialogBox owner) : base(owner)
+        //{
+        //}
+        public event Action TitleChangedEvent;
+
 
         public void SetContent(string content)
         {
             this.content = content;
-            owner.Changed(this);
+            NotifyEventHandlers();
         }
 
         public string GetContent()
         {
             return this.content;
+        }
+
+        protected void OnTitleChanged()
+        {
+            TitleChangedEvent?.Invoke();
         }
     }
 }

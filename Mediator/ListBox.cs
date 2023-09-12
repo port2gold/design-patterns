@@ -9,10 +9,11 @@ namespace design_patterns.Mediator
     internal class ListBox : UIControl
     {
         private string selection;
+        public event Action ArticleSelectedEvent;
 
-        public ListBox(DialogBox owner) : base(owner)
-        {
-        }
+        //public ListBox(DialogBox owner) : base(owner)
+        //{
+        //}
 
         public string GetSelection()
         {
@@ -22,7 +23,11 @@ namespace design_patterns.Mediator
         public void SetSelection(string selection)
         {
             this.selection = selection;
-            owner.Changed(this);
+            NotifyEventHandlers();
+        }
+        protected void OnArticleSelected()
+        {
+            ArticleSelectedEvent?.Invoke();
         }
     }
 }
