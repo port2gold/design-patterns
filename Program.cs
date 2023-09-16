@@ -1,41 +1,24 @@
-﻿//Composite Design Pattern 
-//we chan easily represent Hierrachy of objects and treat the hierrachy of object the same way
-
-using design_patterns.Composite;
-using System.Reflection;
-
-var rectangle1 = new Shape();  //Rectangle
-var rectangle2 = new Shape();  //Rectangle
-
-var circle1 = new Shape();  //Circle
-var circle2 = new Shape(); //Circle
-
-var group1 = new Group();
-group1.Add(rectangle1);
-group1.Add(rectangle2);
-
-var group2 = new Group();
-group2.Add(circle1);   
-group2.Add(circle2);
-
-var group3 = new Group();
-group3.Add(group1);
-group3.Add(group2);
-
-group3.Render();
-//Console Result
-
-//Render Shape
-//Render Shape
-//Render Shape
-//Render Shape
+﻿//Adapter design Pattern
+//Used in situation where interface of a class does not match the interface we expect
 
 
+using design_patterns.Adapter;
+using design_patterns.Adapter.ThirdPartyFilter;
 
-group3.Move();
-//Console Result
+var imageView = new ImageView(new Image());
+imageView.Apply(new VividFilter());
 
-//Move Shape
-//Move Shape
-//Move Shape
-//Move Shape
+//Console Result 
+//Applying Vivid Filter
+
+//imageView.Apply(new Caramel() ) This does not match the interface so throws an error
+imageView.Apply(new CaramelFilter()); // CaramelFilter converts the interface to the expected interface  // Composition is used here
+
+//Console Result 
+//Applying Caramel Filter
+
+
+imageView.Apply(new CaramelAdapter()); //Inheritance is used for the adapter here but Composition is better
+
+//Console Result 
+//Applying Caramel Filter
