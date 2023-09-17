@@ -1,24 +1,40 @@
-﻿//Adapter design Pattern
-//Used in situation where interface of a class does not match the interface we expect
+﻿//Decorator Design Pattern
+//We can add addition behavior to an existing object.
+
+using design_patterns.Decorator;
+
+void StoreCreditCard(design_patterns.Decorator.Stream stream)
+{
+    stream.Write("1234-5455-54545");
+}
+
+StoreCreditCard(new CloudStream());
+
+//Console Result     
+
+//Data: 1234 - 5455 - 54545      //Data is in plain text 
 
 
-using design_patterns.Adapter;
-using design_patterns.Adapter.ThirdPartyFilter;
-
-var imageView = new ImageView(new Image());
-imageView.Apply(new VividFilter());
-
-//Console Result 
-//Applying Vivid Filter
-
-//imageView.Apply(new Caramel() ) This does not match the interface so throws an error
-imageView.Apply(new CaramelFilter()); // CaramelFilter converts the interface to the expected interface  // Composition is used here
-
-//Console Result 
-//Applying Caramel Filter
-
-
-imageView.Apply(new CaramelAdapter()); //Inheritance is used for the adapter here but Composition is better
+StoreCreditCard(new EncryptedCloudStream(new CloudStream()));
 
 //Console Result 
-//Applying Caramel Filter
+
+//Data: @$%^&*((($%                     // A new behavior has been added to this implementation 
+
+
+
+StoreCreditCard(new CompressCloudStream(new CloudStream()));
+
+//Console Result 
+
+//Data: 1234-                         //A different behavior of compression has been added to the implentation
+
+
+
+
+StoreCreditCard(new CompressCloudStream(new EncryptedCloudStream(new CloudStream())));
+
+
+//Console Result 
+
+//Data: @$% ^&*((($%                 // Two diffrent behavior was added to the data // Encryption and then compression.
