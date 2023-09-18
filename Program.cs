@@ -1,40 +1,20 @@
-﻿//Decorator Design Pattern
-//We can add addition behavior to an existing object.
+﻿//Facade design pattern 
+//Use to provide simple interface to a complex system.
 
-using design_patterns.Decorator;
+//it reduces coupling
 
-void StoreCreditCard(design_patterns.Decorator.Stream stream)
-{
-    stream.Write("1234-5455-54545");
-}
+using design_patterns.Facade;
+using System.ComponentModel.DataAnnotations;
 
-StoreCreditCard(new CloudStream());
-
-//Console Result     
-
-//Data: 1234 - 5455 - 54545      //Data is in plain text 
-
-
-StoreCreditCard(new EncryptedCloudStream(new CloudStream()));
-
-//Console Result 
-
-//Data: @$%^&*((($%                     // A new behavior has been added to this implementation 
-
-
-
-StoreCreditCard(new CompressCloudStream(new CloudStream()));
-
-//Console Result 
-
-//Data: 1234-                         //A different behavior of compression has been added to the implentation
+//var server = new NotificationServer();
+//var connection = server.Connect("ip");
+//var authToken = server.Authenticate("appId", "key");
+//var message = new Message("Hello World");
+//server.Send(authToken, message, "target");
 
 
 
 
-StoreCreditCard(new CompressCloudStream(new EncryptedCloudStream(new CloudStream())));
-
-
-//Console Result 
-
-//Data: @$% ^&*((($%                 // Two diffrent behavior was added to the data // Encryption and then compression.
+//Facade implementation wraps and on call is made
+var notification = new NotificationService();
+notification.Send("Hello World", "target");
