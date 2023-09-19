@@ -1,20 +1,17 @@
-﻿//Facade design pattern 
-//Use to provide simple interface to a complex system.
-
-//it reduces coupling
-
-using design_patterns.Facade;
-using System.ComponentModel.DataAnnotations;
-
-//var server = new NotificationServer();
-//var connection = server.Connect("ip");
-//var authToken = server.Authenticate("appId", "key");
-//var message = new Message("Hello World");
-//server.Send(authToken, message, "target");
+﻿//Flyweight design pattern
+//It can be used the amout of memory being used. //Object we can share in different context.
 
 
+using design_patterns.Flyweight;
+
+var service = new PointService(new PointIconFactory());
+
+foreach(var point in service.GetPoints())
+{
+    point.Draw();
+}
 
 
-//Facade implementation wraps and on call is made
-var notification = new NotificationService();
-notification.Send("Hello World", "target");
+//Console Result 
+
+//Cafe at (1,2)     Same Result  but if we have more than 10000 Points new object are not created for the which inturns save memory  -> Point Icons are managed by the Point Icon Factory
