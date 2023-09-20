@@ -1,46 +1,62 @@
-﻿//Bridge Design Pattern 
-//it is used when you have an hieracchy that can grow in two different dimension
+﻿//Proxy design Pattern
+//Lazy loading uses this pattern
 
-using design_patterns.Bridge;
-using System.Collections.Generic;
-
-var sony = new RemoteControl(new SonyTv());
-sony.TurnOn();
-sony.TurnOff();
-
-//Console Result 
-//Sony: Turn On
-//Sony: Turn Off
-
-var sonyAdvance = new AdvancedRemoteControl(new SonyTv());
-sonyAdvance.TurnOn();
-sonyAdvance.SetChannel(5);
-sonyAdvance.TurnOff();
-
-//Console Result 
-
-//Sony: Turn On
-//Sony: Set channel to 5
-//Sony: Turn Off
+using design_patterns.Proxy;
+using System.Runtime.CompilerServices;
 
 
+var library = new Library();
 
+var filenames = new string[] { "a", "b", "c" };
 
-var samsung = new RemoteControl(new SamsungTv());
-samsung.TurnOn();
-samsung.TurnOff();
+foreach (var filename in filenames)
+{
+    library.Add(new Ebook(filename));
+}
 
-//Console Result 
-//Samsung: Turn On
-//Samsung: Turn Off
-
-var samsungAdvance = new AdvancedRemoteControl(new SamsungTv());
-samsungAdvance.TurnOn();
-samsungAdvance.SetChannel(10);
-samsungAdvance.TurnOff();
+library.OpenEbook("a");
 
 //Console Result 
 
-//Samsung: Turn On
-//Samsung: Set channel to 10
-//Samsung: Turn Off
+// Loading the ebook a                     //Loads all the ebook but only opens one of it .
+//Loading the ebook b
+//Loading the ebook c
+//Showing the ebook a
+
+
+var libProxy = new Library();
+
+var fileNames = new string[] { "a", "b", "c" };
+
+foreach (var filename in fileNames)
+{
+    libProxy.Add(new EbookProxy(filename));
+}
+
+libProxy.OpenEbook("a");
+
+//Console Result
+
+//Loading the ebook a
+//Showing the ebook a
+
+var logProxy = new Library();
+
+var fileNames1 = new string[] { "a", "b", "c" };
+
+foreach (var filename in fileNames1)
+{
+    logProxy.Add(new LoggingEbookProxy(filename));
+}
+
+logProxy.OpenEbook("a");
+logProxy.OpenEbook("b");
+
+//Console Result
+
+//Logging Ebook a
+//Loading the ebook a
+//Showing the ebook a
+//Loading the ebook b
+//Logging Ebook b
+//Showing the ebook b
