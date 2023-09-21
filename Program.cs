@@ -1,62 +1,35 @@
-﻿//Proxy design Pattern
-//Lazy loading uses this pattern
-
-using design_patterns.Proxy;
-using System.Runtime.CompilerServices;
+﻿//Prototype design pattern 
+//Used when you want to create a new object by copying an existing object
 
 
-var library = new Library();
+using design_patterns.Prototype;
 
-var filenames = new string[] { "a", "b", "c" };
+var circle = new Circle();
+circle.SetRadius(7);
 
-foreach (var filename in filenames)
-{
-    library.Add(new Ebook(filename));
-}
-
-library.OpenEbook("a");
-
-//Console Result 
-
-// Loading the ebook a                     //Loads all the ebook but only opens one of it .
-//Loading the ebook b
-//Loading the ebook c
-//Showing the ebook a
+var newCircle = circle.Clone();
 
 
-var libProxy = new Library();
-
-var fileNames = new string[] { "a", "b", "c" };
-
-foreach (var filename in fileNames)
-{
-    libProxy.Add(new EbookProxy(filename));
-}
-
-libProxy.OpenEbook("a");
+circle.Render();
+newCircle.Render();
 
 //Console Result
 
-//Loading the ebook a
-//Showing the ebook a
+//Circle of radius: 7
+//Circle of radius: 7
 
-var logProxy = new Library();
 
-var fileNames1 = new string[] { "a", "b", "c" };
 
-foreach (var filename in fileNames1)
-{
-    logProxy.Add(new LoggingEbookProxy(filename));
-}
+var square = new Square();
+square.SetLength(5);
 
-logProxy.OpenEbook("a");
-logProxy.OpenEbook("b");
+var newSquare = square.Clone();
+
+
+square.Render();
+newSquare.Render();
 
 //Console Result
 
-//Logging Ebook a
-//Loading the ebook a
-//Showing the ebook a
-//Loading the ebook b
-//Logging Ebook b
-//Showing the ebook b
+//Square of Length: 5
+//Square of Length: 5
