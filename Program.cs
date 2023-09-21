@@ -1,5 +1,5 @@
 ﻿//Prototype design pattern 
-//Used when you want to create new object by copying existing object
+//Used when you want to create a new object by copying an existing object
 
 
 using design_patterns.Prototype;
