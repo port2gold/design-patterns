@@ -1,35 +1,23 @@
-﻿//Prototype design pattern 
-//Used when you want to create a new object by copying an existing object
+﻿//Singleton Design Pattern 
+//Used where you want to have a single instance of a class
+
+using design_patterns.Singleton;
+
+//ConfigManager manager = new ConfigManager();
+//manager.Set("name", "kabir");
+
+//ConfigManager other = new ConfigManager();
+//Console.WriteLine(other.Get("name"));
+
+//Null is returned in this case
 
 
-using design_patterns.Prototype;
+ConfigManager manager =  ConfigManager.GetInstance();
+manager.Set("name", "kabir");
 
-var circle = new Circle();
-circle.SetRadius(7);
+ConfigManager other = ConfigManager.GetInstance();
+Console.WriteLine(other.Get("name"));
 
-var newCircle = circle.Clone();
+//Console Result 
 
-
-circle.Render();
-newCircle.Render();
-
-//Console Result
-
-//Circle of radius: 7
-//Circle of radius: 7
-
-
-
-var square = new Square();
-square.SetLength(5);
-
-var newSquare = square.Clone();
-
-
-square.Render();
-newSquare.Render();
-
-//Console Result
-
-//Square of Length: 5
-//Square of Length: 5
+//kabir
