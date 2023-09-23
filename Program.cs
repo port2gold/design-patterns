@@ -1,4 +1,4 @@
-﻿//Factory design patter
+﻿//Factory design pattern
 //Defer creation of an object to subclasses
 
 using design_patterns.Factory;
