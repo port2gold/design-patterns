@@ -1,23 +1,18 @@
-﻿//Singleton Design Pattern 
-//Used where you want to have a single instance of a class
+﻿//Factory design pattern
+//Defer creation of an object to subclasses
 
-using design_patterns.Singleton;
+using design_patterns.Factory;
 
-//ConfigManager manager = new ConfigManager();
-//manager.Set("name", "kabir");
+new ProductsController().GetProducts();
 
-//ConfigManager other = new ConfigManager();
-//Console.WriteLine(other.Get("name"));
+//Console Result            //when MatchaController is inherited in the product controller
 
-//Null is returned in this case
+//View rendered by matcha
 
 
-ConfigManager manager =  ConfigManager.GetInstance();
-manager.Set("name", "kabir");
 
-ConfigManager other = ConfigManager.GetInstance();
-Console.WriteLine(other.Get("name"));
+new ProductsController().GetProducts();
 
-//Console Result 
+//Console Result            //when SharpController is inherited in the product controller
 
-//kabir
+//View rendered by Sharp
