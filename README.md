@@ -14,4 +14,4 @@ Provides an interface for creating families of related objects.
  
 
 - **Builder**: 
-Allows separating the construction of an object from its representation so the same construction algorithm can be applied to different representations.The Ultimate Design Patterns Coursecodewithmosh.com
+Allows separating the construction of an object from its representation so the same construction algorithm can be applied to different representations.
